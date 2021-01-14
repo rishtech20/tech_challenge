@@ -1,4 +1,4 @@
-# sam-app
+# api
 
 This project contains source code and supporting files for a serverless application that you can deploy with the AWS Serverless Application Model (AWS SAM) command line interface (CLI). It includes the following files and folders:
 
@@ -40,7 +40,6 @@ The first command will build the source of your application. The second command 
 
 * **Stack Name**: The name of the stack to deploy to CloudFormation. This should be unique to your account and region, and a good starting point would be something matching your project name.
 * **AWS Region**: The AWS region you want to deploy your app to.
-* **Parameter AppBucketName**: This template includes a parameter to name the S3 bucket you will create as a part of the new application. This name needs to be globally unique.
 * **Confirm changes before deploy**: If set to yes, any change sets will be shown to you before execution for manual review. If set to no, the AWS SAM CLI will automatically deploy application changes.
 * **Allow SAM CLI IAM role creation**: Many AWS SAM templates, including this example, create AWS IAM roles required for the AWS Lambda function(s) included to access AWS services. By default, these are scoped down to minimum required permissions. To deploy an AWS CloudFormation stack which creates or modified IAM roles, the `CAPABILITY_IAM` value for `capabilities` must be provided. If permission isn't provided through this prompt, to deploy this example you must explicitly pass `--capabilities CAPABILITY_IAM` to the `sam deploy` command.
 * **Save arguments to samconfig.toml**: If set to yes, your choices will be saved to a configuration file inside the project, so that in the future you can just re-run `sam deploy` without parameters to deploy changes to your application.
@@ -60,7 +59,7 @@ Test a single function by invoking it directly with a test event. An event is a 
 Run functions locally and invoke them with the `sam local invoke` command.
 
 ```bash
-my-application$ sam local invoke S3JsonLoggerFunction --event events/event-s3.json
+my-application$ sam local invoke helloFromLambdaFunction --no-event
 ```
 
 ## Add a resource to your application
@@ -73,10 +72,10 @@ Update `template.yml` to add a dead-letter queue to your application. In the **R
 Resources:
   MyQueue:
     Type: AWS::SQS::Queue
-  S3JsonLoggerFunction:
+  helloFromLambdaFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: src/handlers/s3-json-logger.s3JsonLoggerHandler
+      Handler: src/handlers/hello-from-lambda.helloFromLambdaHandler
       Runtime: nodejs12.x
       DeadLetterQueue:
         Type: SQS
@@ -84,16 +83,6 @@ Resources:
       Policies:
         - SQSSendMessagePolicy:
             QueueName: !GetAtt MyQueue.QueueName
-        - S3NewObjectEvent:
-            Type: S3
-            Properties:
-              Bucket: !Ref AppBucket
-              Events: s3:ObjectCreated:*
-              Filter:
-                S3Key:
-                  Rules:
-                    - Name: suffix
-                      Value: ".json"
 ```
 
 The dead-letter queue is a location for Lambda to send events that could not be processed. It's only used if you invoke your function asynchronously, but it's useful here to show how you can modify your application's resources and function configuration.
@@ -113,7 +102,7 @@ To simplify troubleshooting, the AWS SAM CLI has a command called `sam logs`. `s
 **NOTE:** This command works for all Lambda functions, not just the ones you deploy using AWS SAM.
 
 ```bash
-my-application$ sam logs -n S3JsonLoggerFunction --stack-name sam-app --tail
+my-application$ sam logs -n helloFromLambdaFunction --stack-name sam-app --tail
 ```
 
 **NOTE:** This uses the logical name of the function within the stack. This is the correct name to use when searching logs inside an AWS Lambda function within a CloudFormation stack, even if the deployed function name varies due to CloudFormation's unique resource name generation.
@@ -138,7 +127,7 @@ my-application$ AWS_SAM_STACK_NAME=<stack-name> npm run integ-test
 To delete the sample application that you created, use the AWS CLI. Assuming you used your project name for the stack name, you can run the following:
 
 ```bash
-aws cloudformation delete-stack --stack-name sam-app
+aws cloudformation delete-stack --stack-name api
 ```
 
 ## Resources

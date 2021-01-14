@@ -1,0 +1,21 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Resources:
+  GraphQL:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/handler.graphqlHandler
+      Runtime: nodejs12.x
+      Timeout: 30
+      Events:
+        GetRequest:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+        PostRequest:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+      CodeUri: GraphQL
