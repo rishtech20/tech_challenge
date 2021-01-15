@@ -4,8 +4,8 @@ const { config } = require("../config/config");
 const AWS = require("aws-sdk");
 
 const S3 = new AWS.S3({
-  accessKeyId: "AKIA5I32XYA3MAKWD3XU",
-  secretAccessKey: "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",
+  accessKeyId: "xxx",
+  secretAccessKey: "xxxx",
 });
 
 const typeDefs = gql`
