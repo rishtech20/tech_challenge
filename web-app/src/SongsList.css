@@ -1,0 +1,51 @@
+.Table-Container {
+  display: flex;
+  justify-content: justify;
+  overflow-y: scroll;
+  overflow-x: scroll;
+  width: 100%;
+  height: 90vh;
+}
+
+table {
+  width: 100%;
+  margin: 0.5em;
+}
+
+thead th {
+  text-align: left;
+  padding: 0.5em;
+  border-bottom: 2px solid black;
+}
+
+thead button {
+  border: 0;
+  border-radius: none;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: inherit;
+  padding: 0.5em;
+  margin-bottom: 1px;
+}
+
+thead button.ascending::after {
+  content: "🔽";
+  display: inline-block;
+  margin-left: 1em;
+}
+
+thead button.descending::after {
+  content: "🔼";
+  display: inline-block;
+  margin-left: 1em;
+}
+
+tbody td {
+  padding: 0.5em;
+  border-bottom: 1px solid #ccc;
+  text-align: left;
+}
+
+tbody tr:hover {
+  background-color: #eee;
+}

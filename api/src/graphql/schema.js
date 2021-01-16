@@ -1,5 +1,4 @@
 const { gql } = require("apollo-server-lambda");
-const { config } = require("../config/config");
 
 const AWS = require("aws-sdk");
 
@@ -18,22 +17,22 @@ const typeDefs = gql`
     artist: String!
     songReleaseDate: String!
     playCount: Int!
-    metricA: Int!
-    metricB: Int!
-    metricC: Int!
-    metricD: Int!
-    metricE: Int!
-    metricF: Int!
-    metricG: Int!
-    metricH: Int!
-    metricI: Int!
-    metricJ: Int!
-    metricK: Int!
-    metricL: Int!
-    metricM: Int!
-    metricN: Int!
-    metricO: Int!
-    metricP: Int!
+    metricA: Int
+    metricB: Int
+    metricC: Int
+    metricD: Int
+    metricE: Int
+    metricF: Int
+    metricG: Int
+    metricH: Int
+    metricI: Int
+    metricJ: Int
+    metricK: Int
+    metricL: Int
+    metricM: Int
+    metricN: Int
+    metricO: Int
+    metricP: Int
   }
 `;
 
