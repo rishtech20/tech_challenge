@@ -1,4 +1,4 @@
- # iHeartMedia - Music Lab - Code Challenge
+# iHeartMedia - Music Lab - Code Challenge
 
 Create a React application that shows a list of songs with their information and metrics displayed. The app should have at least **2 pages (views)**:
 A landing page, and a page to show data coming from an API.
@@ -9,27 +9,27 @@ A landing page, and a page to show data coming from an API.
 
 ### UI Checklist
 
-- Create a React App using functional based components and hooks. No class based components, please.
+- Create a React App using functional based components and hooks. No class based components, please. [x]
 
-- Create 2 views ( pages ) using React Router.
+- Create 2 views ( pages ) using React Router. [x]
 
-- Create a page that renders a table displaying a list songs coming from the API. Each row is a song, each column is a song attribute. 
+- Create a page that renders a table displaying a list songs coming from the API. Each row is a song, each column is a song attribute. [x]
 
-- Employ **some** styling but it doesn't have to be much. You can use the styled-components library but do not use any other styling help.
+- Employ **some** styling but it doesn't have to be much. You can use the styled-components library but do not use any other styling help. [x]
 
-- Allow the user to scroll vertically and horizontally through columns and rows that go off screen.
+- Allow the user to scroll vertically and horizontally through columns and rows that go off screen. [x]
 
-- Allow the user to sort the order of the song rows by the column values.
+- Allow the user to sort the order of the song rows by the column values. [x]
 
-- It **does not** need to be mobile responsive.
+- It **does not** need to be mobile responsive. [x]
 
 ### API Notes
 
-Store the included JSON file in an S3 bucket and use the AWS SAM CLI with a **node.js** lambda function to serve the frontend with the data.
+Store the included JSON file in an S3 bucket and use the AWS SAM CLI with a **node.js** lambda function to serve the frontend with the data. [x]
 
-Authentication is not necessary.
+Authentication is not necessary. [x]
 
-You do not need to deploy or host this anywhere.
+You do not need to deploy or host this anywhere. [x]
 
 SAM CLI instructions: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html
 
